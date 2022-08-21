@@ -19,6 +19,7 @@ public class Utils {
     public static Stage currentStage(ActionEvent event) {
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
+
     public static Integer tryParseToInt(String str) {
         try {
             return Integer.parseInt(str);
@@ -26,10 +27,20 @@ public class Utils {
             return null;
         }
     }
+
+    public static Double tryParseToDouble(String str) {
+        try {
+            return Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
     public static <T> void formatTableColumnDate(TableColumn<T, Date> tableColumn, String format) {
         tableColumn.setCellFactory(column -> {
             TableCell<T, Date> cell = new TableCell<T, Date>() {
                 private SimpleDateFormat sdf = new SimpleDateFormat(format);
+
                 @Override
                 protected void updateItem(Date item, boolean empty) {
                     super.updateItem(item, empty);
@@ -43,6 +54,7 @@ public class Utils {
             return cell;
         });
     }
+
     public static <T> void formatTableColumnDouble(TableColumn<T, Double> tableColumn, int decimalPlaces) {
         tableColumn.setCellFactory(column -> {
             TableCell<T, Double> cell = new TableCell<T, Double>() {
